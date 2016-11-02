@@ -11,7 +11,7 @@ span{width: 60px;height: 20px;display: inline-block;border: solid 1px black;text
 <div id='con'></div>
 <div id='page'></div>
 <script type='text/javascript'>
- var arr=new Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17);
+ var arr=new Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
  //pageCon显示那一页的内容
  //arr内容数组,start页面从哪条开始显示的，len每页显示内容条数
     function pageCon(arr,start,len){
@@ -47,9 +47,9 @@ function show(arr,now_page){
     page_str+='<span onclick="show(arr,'+(now_page+1)+')">下一页</span>';
     page_str+='<span onclick="show(arr,'+(page_num)+')">尾页</span>';
   };
-  $('#page').html(page_str);
+    $('#page').html(page_str);
   var constr=pageCon(arr,start,page_size);
-  $('#con').html(constr);
+    $('#con').html(constr);
   }
 
 </script>
