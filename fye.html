@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<style type="text/css">
+span{width: 60px;height: 20px;display: inline-block;border: solid 1px black;text-align: center;margin: 5px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id='con'></div>
+<div id='page'></div>
+<script type='text/javascript'>
+ var arr=new Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17);
+ //pageCon显示那一页的内容
+ //arr内容数组,start页面从哪条开始显示的，len每页显示内容条数
+    function pageCon(arr,start,len){
+      var constr='';
+      for(var i=start;i<start+len;i++){
+          if(arr[i-1]){constr+=arr[i-1]+"<br/>";} 
+      }
+      return constr;
+    }
+ show(arr,1);
+ //now_page当前页面
+function show(arr,now_page){
+  var sum=arr.length; //数据总个数
+  var page_size=4;//一页显示的内容
+  var page_num=Math.ceil(sum/page_size);//分页链接个数
+  var start=(now_page-1)*page_size+1;//页面从数据的哪一条开始
+  var page_str='';//创建分页链接
+  if (now_page>1) {
+    page_str+='<span onclick="show(arr,1)">首页</span>';
+    page_str+='<span onclick="show(arr,'+(now_page-1)+')">上一页</span>';
+    if (now_page==page_num) {
+        page_str+='<span onclick="show(arr,'+(now_page-2)+')">'+(now_page-2)+'</span>';
+      };
+    page_str+='<span onclick="show(arr,'+(now_page-1)+')">'+(now_page-1)+'</span>';
+  };
+    page_str+="<span style='background:black;color:white;margin:0'>"+now_page+"</span>";
+
+  if (now_page<page_num) {
+    page_str+='<span onclick="show(arr,'+(now_page+1)+')">'+(now_page+1)+'</span>';
+      if (now_page==1) {
+        page_str+='<span onclick="show(arr,'+(now_page+2)+')">'+(now_page+2)+'</span>';
+      };
+    page_str+='<span onclick="show(arr,'+(now_page+1)+')">下一页</span>';
+    page_str+='<span onclick="show(arr,'+(page_num)+')">尾页</span>';
+  };
+  $('#page').html(page_str);
+  var constr=pageCon(arr,start,page_size);
+  $('#con').html(constr);
+  }
+
+</script>
+</body>
+</html>
